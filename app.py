@@ -10,6 +10,10 @@ apod_link ='https://api.nasa.gov/planetary/apod?'
 def index():
     return render_template('index.html')
 
+@app.route('/apod')
+def apod_image():
+    return render_template('earth.html')
+
 
 if __name__ == '__main__':
     app.run()
