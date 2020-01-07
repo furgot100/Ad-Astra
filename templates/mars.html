@@ -16,6 +16,21 @@
     {% include 'partials/navbar.html' %}
     <div class='container'>
         {% block content %}{% endblock %}  
+    </div> 
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4">Fluid jumbotron</h1>
+          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+    </div>
+    <div class="container mb-5 mt-5">
+        <div class="row">
+            <div class="col-lg-4">
+                <h3>Earth</h3>
+                <p class="lead"></p>
+                <a href='/mars/photos' class="btn btn-primary">continue</a>
+            </div>
+        </div>
     </div>
 </body>
 

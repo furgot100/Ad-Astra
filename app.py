@@ -12,6 +12,8 @@ image_url = "https://images-api.nasa.gov/search"
 
 earth_imagery = "https://api.nasa.gov/planetary/earth/imagery"
 
+mars_url = "https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos"
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -74,6 +76,32 @@ def apod_results():
     
     return render_template('apod_results.html', description=description, title=title, url=url)
 
+def search_results():
+    user_search = request.args.get('item')
+
+    params = {
+        'q' : user_search,
+    }
+    
+    r = requests.get(image_url, params=params)
+
+    results = r.json()
+    pass
+
+@app.route('/mars/photos')
+def mars_pic():
+    params = {
+        'sol' : int(1000),
+        'camera' : 'pancam',
+        'api_key' : API_KEY
+    }
+
+    r = requests.get(mars_url, params=params)
+
+    results = r.json()
+    photo = results["photos"][0]["img_src"]
+
+    return render_template('mars_pic.html',photo=photo)
 
 
 

@@ -15,15 +15,15 @@
 </head>
 <body>
     {% include 'partials/navbar.html' %}
-    {{ description }}
-
-    <br>
-    <br>
     
-    {{ title }}
-    <br>
-    <br>
-    {{ url }}
+    <div class='col-sm-6 col-sm-offset-3'>
+        {{ title }}
+        <br>
+        <img src='{{ url }}'>
+        <br>
+        <br>
+        {{ description }}
+    </div>
 
 </body>
 </html>
