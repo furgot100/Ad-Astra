@@ -69,9 +69,10 @@ def apod_results():
     results = r.json()
     description = results["explanation"]
     title = results["title"]
+    url = results["url"]
 
     
-    return render_template('apod_results.html', description=description, title=title)
+    return render_template('apod_results.html', description=description, title=title, url=url)
 
 
 
