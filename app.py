@@ -4,9 +4,11 @@ import pprint
 
 app = Flask(__name__)
 
-apod_link ='https://api.nasa.gov/planetary/apod'
+API_KEY='iEXQ64MtrOAU8qpIul6IWbSFiohIhil8eJTo2Dvc'
 
-image_link = "https://images-api.nasa.gov/search"
+apod_url ='https://api.nasa.gov/planetary/apod'
+
+image_url = "https://images-api.nasa.gov/search"
 
 earth_imagery = "https://api.nasa.gov/planetary/earth/imagery"
 
@@ -33,7 +35,6 @@ def earth_image():
     longitude = request.args.get('longitude')
     date = request.args.get('date')
 
-    API_KEY='iEXQ64MtrOAU8qpIul6IWbSFiohIhil8eJTo2Dvc'
 
     params = {
         'lon' : longitude,
@@ -46,12 +47,24 @@ def earth_image():
     
     if not r.status_code == 200:
         print('error')
-    
+    pprint(r)
     results = r.json()
-    day = results['date']
-    url = results['url']
+    day = results["date"]
+    # url = results['url']
 
-    return render_template('earth_img_result.html', day=day, url=url)
+    return render_template('earth_img_result.html', day=day)
+
+def apod():
+    params = {
+        'api_key' : API_KEY
+    }
+
+    r = requests.get(apod_url, params=params)
+
+
+
+
+
 
 
 if __name__ == '__main__':
