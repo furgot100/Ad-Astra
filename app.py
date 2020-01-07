@@ -16,7 +16,7 @@ image_url = "https://images-api.nasa.gov/search"
 
 earth_imagery = "https://api.nasa.gov/planetary/earth/imagery"
 
-mars_url = "https://api.nasa.gov/insight_weather"
+mars_url = "https://api.nasa.gov/insight_weather/"
 
 @app.route('/')
 def index():
@@ -96,15 +96,21 @@ def search_results():
 @app.route('/mars/weather')
 def mars_weather():
     params = {
-        'api_key' : API_KEY
+        'api_key' : API_KEY,
+        'feedtype' : 'json',
+        'version' : 1.0
     }
 
     r = requests.get(mars_url, params=params)
 
     results = r.json()
+    sol = results["389"]
+    temp = sol["AT"]
+    min_temp = temp["mn"]
+    max_temp = temp["mx"]
     
 
-    return render_template('mars_pic.html',results=results)
+    return render_template('mars_result.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
 
 
 
