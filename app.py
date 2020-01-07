@@ -1,6 +1,10 @@
 from flask import Flask, render_template, request
 import requests
 import pprint
+from random import random
+
+
+
 
 app = Flask(__name__)
 
@@ -12,7 +16,7 @@ image_url = "https://images-api.nasa.gov/search"
 
 earth_imagery = "https://api.nasa.gov/planetary/earth/imagery"
 
-mars_url = "https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos"
+mars_url = "https://api.nasa.gov/insight_weather"
 
 @app.route('/')
 def index():
@@ -86,22 +90,21 @@ def search_results():
     r = requests.get(image_url, params=params)
 
     results = r.json()
+    # Come back to this later finish planned routes and endpoints
     pass
 
-@app.route('/mars/photos')
-def mars_pic():
+@app.route('/mars/weather')
+def mars_weather():
     params = {
-        'sol' : int(1000),
-        'camera' : 'pancam',
         'api_key' : API_KEY
     }
 
     r = requests.get(mars_url, params=params)
 
     results = r.json()
-    photo = results["photos"][0]["img_src"]
+    
 
-    return render_template('mars_pic.html',photo=photo)
+    return render_template('mars_pic.html',results=results)
 
 
 
