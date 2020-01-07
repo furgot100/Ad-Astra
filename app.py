@@ -53,13 +53,25 @@ def earth_image():
     # url = results['url']
 
     return render_template('earth_img_result.html', day=day)
-
+@app.route('/apod')
 def apod():
+    return render_template('apod.html')
+
+
+@app.route('/apod/results')
+def apod_results():
     params = {
         'api_key' : API_KEY
     }
 
     r = requests.get(apod_url, params=params)
+
+    results = r.json()
+    description = results["explanation"]
+    title = results["title"]
+
+    
+    return render_template('apod_results.html', description=description, title=title)
 
 
 
