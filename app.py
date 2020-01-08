@@ -35,6 +35,7 @@ def mars():
 def earth_form():
     return render_template('imagery_form.html')
 
+# TODO fix earth imagery
 @app.route('/earth_imagery')
 def earth_image():
     latitude = request.args.get('latitude')
@@ -51,14 +52,14 @@ def earth_image():
 
     r = requests.get(earth_imagery, params=params)
     
-    if not r.status_code == 200:
-        print('error')
-    pprint(r)
+
     results = r.json()
     day = results["date"]
     # url = results['url']
-
+    pass
     return render_template('earth_img_result.html', day=day)
+
+
 @app.route('/apod')
 def apod():
     return render_template('apod.html')
@@ -79,7 +80,7 @@ def apod_results():
 
     
     return render_template('apod_results.html', description=description, title=title, url=url)
-
+@app.route('/search/results')
 def search_results():
     user_search = request.args.get('item')
 
@@ -90,8 +91,11 @@ def search_results():
     r = requests.get(image_url, params=params)
 
     results = r.json()
+
+    img = results["collection"]["items"][0]["links"][0]["href"]
+    
     # Come back to this later finish planned routes and endpoints
-    pass
+    return render_template('search_results.html', img=img)
 
 @app.route('/mars/weather')
 def mars_weather():
@@ -110,7 +114,7 @@ def mars_weather():
     max_temp = temp["mx"]
     
 
-    return render_template('mars_result.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
+    return render_template('mars_weather.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
 
 
 
