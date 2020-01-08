@@ -1,12 +1,17 @@
 from flask import Flask, render_template, request
 import requests
 import pprint
-from random import random
+from pymongo import MongoClient
 
+client = MongoClient()
+db = client.Astra
+comments = db.comments
 
 
 
 app = Flask(__name__)
+
+pp = pprint.PrettyPrinter(indent=4)
 
 API_KEY='iEXQ64MtrOAU8qpIul6IWbSFiohIhil8eJTo2Dvc'
 
@@ -86,16 +91,22 @@ def search_results():
 
     params = {
         'q' : user_search,
+        'media_type' : 'image',
     }
     
     r = requests.get(image_url, params=params)
 
     results = r.json()
 
-    img = results["collection"]["items"][0]["links"][0]["href"]
+    collection = results["collection"]["items"][1]
+    links = collection["links"]
+    img = links[0]["href"]
+
+
+    
     
     # Come back to this later finish planned routes and endpoints
-    return render_template('search_results.html', img=img)
+    return render_template('search_results.html',img=img)
 
 @app.route('/mars/weather')
 def mars_weather():
