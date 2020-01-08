@@ -43,6 +43,7 @@ def earth_form():
 # TODO fix earth imagery
 @app.route('/earth_imagery')
 def earth_image():
+    pass
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')
     date = request.args.get('date')
@@ -101,12 +102,14 @@ def search_results():
     collection = results["collection"]["items"][1]
     links = collection["links"]
     img = links[0]["href"]
+    description = collection["data"][0]["description"]
+    title = collection["data"][0]["title"]
 
 
     
     
     # Come back to this later finish planned routes and endpoints
-    return render_template('search_results.html',img=img)
+    return render_template('search_results.html',img=img,description=description,title=title)
 
 @app.route('/mars/weather')
 def mars_weather():
@@ -126,7 +129,6 @@ def mars_weather():
     
 
     return render_template('mars_weather.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
-
 
 
 
