@@ -12,15 +12,17 @@
 </head>
 <body>
     {% include 'partials/navbar.html' %}
-    
-    <div class='col-sm-6 col-sm-offset-3'>
-        {{ title }}
-        <br>
-        <img src='{{ url }}'>
-        <br>
-        <br>
-        {{ description }}
+    <div class='row'>
+        <div class='col-sm-6 col-sm-offset-3'>
+            {{ title }}
+            <br>
+            <img src='{{ url }}'>
+            <br>
+            <br>
+            {{ description }}
+        </div>
     </div>
+
 
 </body>
 </html>
