@@ -6,6 +6,7 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.Astra
 comments = db.comments
+blog = db.blog
 
 
 
@@ -23,9 +24,11 @@ earth_imagery = "https://api.nasa.gov/planetary/earth/imagery"
 
 mars_url = "https://api.nasa.gov/insight_weather/"
 
+# Homepage
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/earth')
 def earth():
@@ -122,13 +125,21 @@ def mars_weather():
     r = requests.get(mars_url, params=params)
 
     results = r.json()
-    sol = results["389"]
+    sol = results["391"]
     temp = sol["AT"]
     min_temp = temp["mn"]
     max_temp = temp["mx"]
     
 
     return render_template('mars_weather.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
+
+@app.route('/blog')
+def show_blogs():
+    return render_template('blog_index.html')
+
+@app.route('/blog/create')
+def create_blog():
+    
 
 
 
