@@ -144,18 +144,18 @@ def mars_weather():
 def blogs_index():
     return render_template('blogs_index.html', blogs=blogs.find())
 
-# @app.route('/blog/create')
-# def create_blog():
-#     return render_template('create_blog.html')
+@app.route('/blog/new')
+def blogs_new():
+    return render_template('blogs_new.html')
 
-# @app.route('/blog',methods=['POST'])
-# def blog_submit():
-#     blg = {
-#         'title' : request.form.get('title'),
-#         'content' : request.form.get('content')
-#     }
-#     blog.insert_one(blg)
-#     return redirect(url_for('blogs_index'))
+@app.route('/blog',methods=['POST'])
+def blogs_submit():
+    blog = {
+        'title' : request.form.get('title'),
+        'content' : request.form.get('content')
+    }
+    blogs.insert_one(blog)
+    return redirect(url_for('blogs_index'))
 
 
 
