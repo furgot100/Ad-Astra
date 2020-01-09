@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import pprint
 from pymongo import MongoClient
@@ -6,7 +6,7 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.Astra
 comments = db.comments
-blog = db.blog
+
 
 
 
@@ -133,13 +133,28 @@ def mars_weather():
 
     return render_template('mars_weather.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
 
-@app.route('/blog')
-def show_blogs():
-    return render_template('blog_index.html')
+blog = [
+    { 'title': 'test', 'content': 'Cats acting weird' }
+]
 
-@app.route('/blog/create')
-def create_blog():
-    
+
+
+@app.route('/blog')
+def blogs_index():
+    return render_template('blogs_index.html', blog=blog)
+
+# @app.route('/blog/create')
+# def create_blog():
+#     return render_template('create_blog.html')
+
+# @app.route('/blog',methods=['POST'])
+# def blog_submit():
+#     blg = {
+#         'title' : request.form.get('title'),
+#         'content' : request.form.get('content')
+#     }
+#     blog.insert_one(blg)
+#     return redirect(url_for('blogs_index'))
 
 
 
