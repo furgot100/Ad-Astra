@@ -31,21 +31,22 @@ mars_url = "https://api.nasa.gov/insight_weather/"
 def index():
     return render_template('index.html')
 
-
+# Earth landing page
 @app.route('/earth')
 def earth():
     return render_template('earth.html')
 
+# Mars landing page
 @app.route('/mars')
 def mars():
     return render_template('mars.html')
 
-
+# LandSat imagery search 
 @app.route('/earth_search')
 def earth_form():
     return render_template('imagery_form.html')
 
-# TODO fix earth imagery
+# earth imagery!!!DOES NOT WORK!!!
 @app.route('/earth_imagery')
 def earth_image():
     pass
@@ -70,12 +71,12 @@ def earth_image():
     pass
     return render_template('earth_img_result.html', day=day)
 
-
+# APOD landing page
 @app.route('/apod')
 def apod():
     return render_template('apod.html')
 
-
+# Picture of the day
 @app.route('/apod/results')
 def apod_results():
     params = {
@@ -91,6 +92,8 @@ def apod_results():
 
     
     return render_template('apod_results.html', description=description, title=title, url=url)
+
+# NASA image search directory
 @app.route('/search/results')
 def search_results():
     user_search = request.args.get('item')
@@ -116,6 +119,7 @@ def search_results():
     # Come back to this later finish planned routes and endpoints
     return render_template('search_results.html',img=img,description=description,title=title)
 
+# Mars weather display
 @app.route('/mars/weather')
 def mars_weather():
     params = {
@@ -140,15 +144,17 @@ def mars_weather():
 # ]
 
 
-
+# User Blogs
 @app.route('/blog')
 def blogs_index():
     return render_template('blogs_index.html', blogs=blogs.find())
 
+# Create new Post
 @app.route('/blog/new')
 def blogs_new():
     return render_template('blogs_new.html')
 
+# Submit Post
 @app.route('/blog',methods=['POST'])
 def blogs_submit():
     blog = {
@@ -157,6 +163,8 @@ def blogs_submit():
     }
     blogs.insert_one(blog)
     return redirect(url_for('blogs_index'))
+
+# Show single Post
 @app.route('/blog/<blog_id>')
 def blogs_show(blog_id):
     blog = blogs.find_one({'_id': ObjectId(blog_id)})
