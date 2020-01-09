@@ -6,6 +6,7 @@ from pymongo import MongoClient
 client = MongoClient()
 db = client.Astra
 comments = db.comments
+blogs = db.blogs
 
 
 
@@ -133,15 +134,15 @@ def mars_weather():
 
     return render_template('mars_weather.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
 
-blog = [
-    { 'title': 'test', 'content': 'Cats acting weird' }
-]
+# blog = [
+#     { 'title': 'test', 'content': 'Cats acting weird' }
+# ]
 
 
 
 @app.route('/blog')
 def blogs_index():
-    return render_template('blogs_index.html', blog=blog)
+    return render_template('blogs_index.html', blogs=blogs.find())
 
 # @app.route('/blog/create')
 # def create_blog():
