@@ -11,7 +11,7 @@
 </div>
     <h1>Posts</h1>
     {% for blog in blogs %}
-        <h2>{{ blog.title }}</h2>
+        <h2><a href='/blog/{{ blog._id}}'>{{ blog.title }}</a></h2>
         <small>{{ blog.content }}</small>
     {% endfor %}
 {% endblock %}

@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import requests
 import pprint
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 client = MongoClient()
 db = client.Astra
@@ -156,6 +157,12 @@ def blogs_submit():
     }
     blogs.insert_one(blog)
     return redirect(url_for('blogs_index'))
+@app.route('/blog/<blog_id>')
+def blogs_show(blog_id):
+    blog = blogs.find_one({'_id': ObjectId(blog_id)})
+    return render_template('blogs_show.html',blog=blog)
+
+
 
 
 
