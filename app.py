@@ -3,9 +3,12 @@ import requests
 import pprint
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import os
 
-client = MongoClient()
-db = client.Astra
+
+host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Astra')
+client = MongoClient(host=f'{host}?retryWrites=false')
+db = client.get_default_database()
 comments = db.comments
 blogs = db.blogs
 
@@ -176,7 +179,7 @@ def blogs_update(blog_id):
         'title' : request.form.get('title'),
         'content': request.form.get('content')
     }
-    
+
     blogs.update_one(
         {'_id': ObjectId(blog_id)},
         {'$set': updated_blog})
@@ -195,4 +198,4 @@ def blogs_delete(blog_id):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
