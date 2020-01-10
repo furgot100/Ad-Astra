@@ -1,20 +1,22 @@
-<form methods='POST' action='/blog'>
-    <fieldset>
-            <div class='form-group'>
-                    <label for='blog-title'>Title</label>
-                    <input class='form-control'
-                        id='blog-title'
-                        type='text'
-                        name='title'
-                        placeholder="Title"/>
-                </div>
-                <div class='form-group'>
-                    <label for='blog-content'>Description</label><br>
-                    <textarea class='form-control'
-                        id='blog-content'
-                        name='content'
-                        rows='10'
-                        placeholder="Write Your Ideas!"></textarea>
-            </div>
-    </fieldset>
-</form>
+
+<fieldset>
+    <div class='form-group'>
+        <label for='blog-title'>Title</label>
+            <input class='form-control'
+                id='blog-title'
+                    type='text'
+                    name='title'
+                    placeholder="Title"/>    
+    </div>  
+    <div class='form-group'>    
+        <label for='blog-content'>Description</label><br>
+        <textarea class='form-control'    
+            id='blog-content'
+            name='content'                
+            rows='10'
+            placeholder="Write Your Ideas!"></textarea>
+    </div>
+</fieldset>
+<p>
+    <button type='submit'>Save Post</button>
+</p>

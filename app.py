@@ -176,6 +176,7 @@ def blogs_update(blog_id):
         'title' : request.form.get('title'),
         'content': request.form.get('content')
     }
+    
     blogs.update_one(
         {'_id': ObjectId(blog_id)},
         {'$set': updated_blog})

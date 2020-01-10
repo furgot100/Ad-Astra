@@ -2,25 +2,21 @@
 {% extends 'base.html' %}
 <body>
     {% block content %}
-    <div class='row'>
-        <div class='col-sm-6 col-sm-offset-3'>
-            {{ title }}
-            <br>
-            <img src='{{ url }}'>
-            <br>
-            <br>
-            {{ description }}
-            <br>
-            <!-- LikeBtn.com BEGIN -->
-            <span class="likebtn-wrapper" data-identifier="item_1" data-show_like_label="false" data-dislike_enabled="false" data-voting_frequency="1" data-counter_count="true" data-popup_position="right" data-popup_style="dark"></span>
-            <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
-            <!-- LikeBtn.com END -->
-            <br>
-            <br>
-            {% include 'partials/comment_form.html' %}
+    <div class="card">
+        <img src="{{ url }}" class="card-img-top" alt="...">
+        <h5>{{ title }}</h5>
+        <div class="card-body">
+          <p class="card-text">{{ description }}</p>
         </div>
     </div>
-    
+    <div class='col-sm-6 col-sm-offset-3'>
+        <!-- LikeBtn.com BEGIN -->
+        <span class="likebtn-wrapper" data-identifier="item_1" data-show_like_label="false" data-dislike_enabled="false" data-voting_frequency="1" data-counter_count="true" data-popup_position="right" data-popup_style="dark"></span>
+        <script>(function(d,e,s){if(d.getElementById("likebtn_wjs"))return;a=d.createElement(e);m=d.getElementsByTagName(e)[0];a.async=1;a.id="likebtn_wjs";a.src=s;m.parentNode.insertBefore(a, m)})(document,"script","//w.likebtn.com/js/w/widget.js");</script>
+        <!-- LikeBtn.com END -->
+        <!-- comments do not work -->
+
+    </div>
     {% endblock %}
 </body>
 </html>

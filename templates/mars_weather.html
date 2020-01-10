@@ -3,24 +3,16 @@
 <body>
     {% block content %}
         <div class="container">
+            <h4>The Temp on Mars!</h4>
             <iframe src='https://mars.nasa.gov/layout/embed/image/insightweather/' width='1200' height='650'  scrolling='no' frameborder='0'></iframe>
             <div class="text-block">
-                <h4>The Temp on Mars!</h4>
+                
             </div>
-            
-            
-            <div class="min-temp">
-                {{ min_temp }}°F
-            </div>
-            <div clas="max-temp">
-                {{ max_temp }}°F
-            </div>
+
             <!-- <a href="#" class="btn btn-primary">Learn More</a> -->
         </div>
     <br>
-    {{ temp }}
     <br>
-    
     <br>
     {% endblock %}
 </body>

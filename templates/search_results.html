@@ -2,12 +2,18 @@
 {% extends 'base.html' %}
 <body>
     {% block content %}
-    {{ title }}
+    <div class="card">
+        
+        <img src="{{ img }}" class="card-img-top" alt="...">
+        <h5>{{ title }}</h5>
+        <div class="card-body">
+          <p class="card-text">{{ description }}</p>
+        </div>
+    </div>
     <br>
-    <img src="{{ img }}">
     <br>
     <br>
-    {{ description }}
+    
     {% endblock %}
 </body>
 </html>
