@@ -15,3 +15,9 @@ If you want this in your repository use
 git remote set-url origin https://github.com/<your-username>/<your-repo-name>
 ```
 ## Live Site
+https://astra-ft.herokuapp.com/
+
+### Known issues
+APOD does not work on live site, but works on local machine.
+Editing post do not work.
+ 
