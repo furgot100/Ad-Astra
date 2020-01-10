@@ -9,11 +9,16 @@
 <p>Unfortunately edit does not work. But Everything else works fine.</p>
 <a class="btn btn-primary btn-lg" href="/blog/new" role="button">Create</a>
 </div>
-    <h1>Posts</h1>
-    {% for blog in blogs %}
-        <h2><a href='/blog/{{ blog._id }}'>{{ blog.title }}</a></h2>
-        <small>{{ blog.content }}</small>
-    {% endfor %}
+<h1>Posts</h1>
+{% for blog in blogs %}
+<div class="card w-75">
+    <div class="card-body">
+      <h5 class="card-title">{{ blog.title }}</h5>
+      <p class="card-text">{{ blog.content}}</p>
+      <a href="/blog/{{ blog._id }}" class="btn btn-primary">More</a>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
 
 
