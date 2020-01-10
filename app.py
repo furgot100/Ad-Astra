@@ -1,15 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
-import requests
 import pprint
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
-
+import requests
 
 host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Astra')
-client = MongoClient(host=f'{host}?retryWrites=false')
+client = MongoClient(host=host)
 db = client.get_default_database()
-comments = db.comments
 blogs = db.blogs
 
 
@@ -198,4 +196,4 @@ def blogs_delete(blog_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=os.environ.get('PORT', 5000))
+    app.run()
