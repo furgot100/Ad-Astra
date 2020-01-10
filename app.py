@@ -5,7 +5,7 @@ from bson.objectid import ObjectId
 import os
 import requests
 
-host = os.environ.get('MONGODB_URI', 'mongodb://localhost:27017/Astra')
+host = os.environ.get('MONGOLAB_BLACK_URI', 'mongodb://localhost:27017/Astra')
 client = MongoClient(host=f'{host}?retryWrites=false')
 db = client.get_default_database()
 blogs = db.blogs
