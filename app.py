@@ -152,7 +152,7 @@ def blogs_index():
 # Create new Post
 @app.route('/blog/new')
 def blogs_new():
-    return render_template('blogs_new.html')
+    return render_template('blogs_new.html',title='New Post')
 
 # Submit Post
 @app.route('/blog',methods=['POST'])
@@ -170,9 +170,22 @@ def blogs_show(blog_id):
     blog = blogs.find_one({'_id': ObjectId(blog_id)})
     return render_template('blogs_show.html',blog=blog)
 
+@app.route('/blog/<blog_id>', methods=['POST'])
+def blogs_update(blog_id):
+    updated_blog = {
+        'title' : request.form.get('title'),
+        'content': request.form.get('content')
+    }
+    blogs.update_one(
+        {'_id': ObjectId(blog_id)},
+        {'$set': updated_blog})
 
+    return redirect(url_for('blogs_show', blog_id=blog_id))
 
-
+@app.route('/blog/<blog_id>/edit')
+def blogs_edit(blog_id):
+    blog = blogs.find_one({'._id': ObjectId(blog_id)})
+    return render_template('blogs_edit.html', blog=blog, title='Edit Post')
 
 
 
