@@ -123,22 +123,7 @@ def search_results():
 # Mars weather display
 @app.route('/mars/weather')
 def mars_weather():
-    params = {
-        'api_key' : API_KEY,
-        'feedtype' : 'json',
-        'version' : 1.0
-    }
-
-    r = requests.get(mars_url, params=params)
-
-    results = r.json()
-    sol = results["391"]
-    temp = sol["AT"]
-    min_temp = temp["mn"]
-    max_temp = temp["mx"]
-    
-
-    return render_template('mars_weather.html',temp=temp,min_temp=min_temp,max_temp=max_temp)
+    return render_template('mars_weather.html')
 
 # blog = [
 #     { 'title': 'test', 'content': 'Cats acting weird' }
