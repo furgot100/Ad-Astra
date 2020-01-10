@@ -184,9 +184,13 @@ def blogs_update(blog_id):
 
 @app.route('/blog/<blog_id>/edit')
 def blogs_edit(blog_id):
-    blog = blogs.find_one({'._id': ObjectId(blog_id)})
+    blog = blogs.find_one({'_id': ObjectId(blog_id)})
     return render_template('blogs_edit.html', blog=blog, title='Edit Post')
 
+@app.route('/blog/<blog_id>/delete', methods=['POST'])
+def blogs_delete(blog_id):
+    blogs.delete_one({'_id': ObjectId(blog_id)})
+    return redirect(url_for('blogs_index'))
 
 
 if __name__ == '__main__':
