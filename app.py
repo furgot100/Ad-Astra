@@ -4,6 +4,9 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 import os
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 host = os.environ.get('MONGOLAB_BLACK_URI', 'mongodb://localhost:27017/Astra')
 client = MongoClient(host=f'{host}?retryWrites=false')
@@ -17,7 +20,7 @@ app = Flask(__name__)
 
 pp = pprint.PrettyPrinter(indent=4)
 
-API_KEY='iEXQ64MtrOAU8qpIul6IWbSFiohIhil8eJTo2Dvc'
+API_KEY=os.getenv("API_KEY")
 
 apod_url ='https://api.nasa.gov/planetary/apod'
 
